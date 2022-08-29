@@ -51,6 +51,6 @@ public class DetectorServiceApplication {
 	}
 
 	public static String generateNumber() {
-		return String.valueOf((byte) (Math.random() * 100));
+		return String.valueOf((byte) (Math.random() * 101));
 	}
 }
