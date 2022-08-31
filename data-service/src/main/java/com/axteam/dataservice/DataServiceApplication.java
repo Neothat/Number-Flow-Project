@@ -1,20 +1,17 @@
 package com.axteam.dataservice;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.axteam.dataservice.services.DataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 @SpringBootApplication
 @EnableKafka
 public class DataServiceApplication {
 
-	private final Logger logger = LoggerFactory.getLogger(DataServiceApplication.class);
+	private DataService dataService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DataServiceApplication.class, args);
@@ -22,8 +19,15 @@ public class DataServiceApplication {
 
 	@KafkaListener(topics = "Stream_of_numbers", groupId = "number_id")
 	public void listener(String str) {
-		logger.info(String.format("%s; Number received: %s",
-				LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")),
-				str));
+		getDataService().saveDataRecord(Short.parseShort(str));
+	}
+
+	public DataService getDataService() {
+		return dataService;
+	}
+
+	@Autowired
+	public void setDataService(DataService dataService) {
+		this.dataService = dataService;
 	}
 }

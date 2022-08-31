@@ -1,18 +1,35 @@
 package com.axteam.dataservice.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.OffsetDateTime;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "coredata")
 public class DataRecord {
 
-	private long id;
-	private short value;
-	private Date time;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
+	@Column(name = "value")
+	private Short value;
+
+	@Column(name = "time")
+	private OffsetDateTime time;
+
+	public DataRecord(Short value, OffsetDateTime time) {
+		this.value = value;
+		this.time = time;
+	}
 }
