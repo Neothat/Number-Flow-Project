@@ -1,6 +1,5 @@
 package com.axteam.dataservice.services.impl;
 
-import com.axteam.dataservice.DataServiceApplication;
 import com.axteam.dataservice.dao.DataServiceDao;
 import com.axteam.dataservice.kafka.KafkaProducerUtil;
 import com.axteam.dataservice.services.DataService;
