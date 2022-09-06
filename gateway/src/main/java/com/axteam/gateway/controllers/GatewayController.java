@@ -5,31 +5,36 @@ import com.axteam.gateway.feignclients.DataServiceFeignClient;
 import dto.CounterInfoDto;
 import dto.DataRecordDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController()
+@RequestMapping("/gateway")
 public class GatewayController {
 
 	private DataServiceFeignClient dataServiceFeignClient;
 	private AnalyticsServiceFeignClient analyticsServiceFeignClient;
 
 	@GetMapping
-	public List<CounterInfoDto> getAllCounterInfos(){
+	public String hello() {
+		return "Hello";
+	}
+
+	@GetMapping("/allCounterInfos")
+	public List<CounterInfoDto> getAllCounterInfos() {
 		return getAnalyticsServiceFeignClient().getAllCounterInfos();
 	}
 
-	@GetMapping
-	public Page<DataRecordDto> getAllDataRecords(
-			@RequestParam(name = "page", defaultValue = "1") Integer page,
+	@GetMapping("/allDataRecords")
+	public List<DataRecordDto> getAllDataRecords(
 			@RequestParam(name = "startDate", required = false) String startDate,
 			@RequestParam(name = "endDate", required = false) String endDate
 	) {
-		return getDataServiceFeignClient().getAllDataRecords(page, startDate, endDate);
+		return getDataServiceFeignClient().getAllDataRecords(startDate, endDate);
 	}
 
 	public DataServiceFeignClient getDataServiceFeignClient() {

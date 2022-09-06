@@ -1,10 +1,10 @@
-package com.axteam.analyticsservice.services;
+package com.axteam.analyticsservice.dao;
 
 import com.axteam.analyticsservice.models.CounterInfo;
 
 import java.util.List;
 
-public interface AnalyticsService {
-	void updateCounterInfo(int value);
+public interface AnalyticsDao {
+	void update(int value);
 	List<CounterInfo> getAllCounterInfo();
 }

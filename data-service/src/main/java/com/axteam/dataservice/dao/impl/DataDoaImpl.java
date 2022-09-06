@@ -1,0 +1,68 @@
+package com.axteam.dataservice.dao.impl;
+
+import com.axteam.dataservice.dao.DataDao;
+import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.utils.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import java.time.OffsetDateTime;
+import java.util.List;
+
+@Repository
+public class DataDoaImpl implements DataDao {
+
+	private static final Logger logger = LoggerFactory.getLogger(DataDoaImpl.class);
+	private final Session session = HibernateUtil.getSessionFactory().openSession();
+
+	@Override
+	public void save(short number, OffsetDateTime time) {
+		session.beginTransaction();
+		DataRecord dataRecord = new DataRecord(number, time);
+		session.save(dataRecord);
+		session.getTransaction().commit();
+		logger.info("An entry has been added to the database: " + dataRecord);
+	}
+
+	@Override
+	public List<DataRecord> getDataRecord(String startDate, String endDate) {
+		OffsetDateTime editedStartDate = null;
+		OffsetDateTime editedEndDate = null;
+
+		if (startDate != null) {
+			editedStartDate = OffsetDateTime.parse(startDate + "T00:00:00+03:00").minusDays(1L);
+		}
+		if (endDate != null) {
+			editedEndDate = OffsetDateTime.parse(endDate + "T00:00:00+03:00").plusDays(1L);
+		}
+
+		StringBuilder query = new StringBuilder("select dr from DataRecord as dr");
+
+		if (editedStartDate != null && editedEndDate != null) {
+			query.append(" where time >= :startDate and time <= :endDate");
+			Query<DataRecord> query1 = session.createQuery(query.toString(), DataRecord.class);
+			query1.setParameter("startDate", editedStartDate);
+			query1.setParameter("endDate", editedEndDate);
+			return query1.getResultList();
+		}
+
+		if (editedStartDate != null) {
+			query.append(" where time >= :startDate");
+			Query<DataRecord> query1 = session.createQuery(query.toString(), DataRecord.class);
+			query1.setParameter("startDate", editedStartDate);
+			return query1.getResultList();
+		}
+
+		if (editedEndDate != null) {
+			query.append(" where time <= :endDate");
+			Query<DataRecord> query1 = session.createQuery(query.toString(), DataRecord.class);
+			query1.setParameter("endDate", editedEndDate);
+			return query1.getResultList();
+		}
+
+		return session.createQuery(query.toString(), DataRecord.class).list();
+	}
+}
