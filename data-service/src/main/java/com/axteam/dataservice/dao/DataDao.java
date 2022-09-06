@@ -1,11 +1,11 @@
-package com.axteam.dataservice.services;
+package com.axteam.dataservice.dao;
 
 import com.axteam.dataservice.models.DataRecord;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
-public interface DataService {
-	void saveDataRecord(short number);
-	void checkIncident(short number);
+public interface DataDao {
+	void save(short number, OffsetDateTime time);
 	List<DataRecord> getDataRecord(String startDate, String endDate);
 }

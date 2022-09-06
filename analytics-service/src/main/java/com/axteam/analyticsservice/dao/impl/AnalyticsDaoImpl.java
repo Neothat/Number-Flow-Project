@@ -1,6 +1,6 @@
 package com.axteam.analyticsservice.dao.impl;
 
-import com.axteam.analyticsservice.dao.AnalyticsServiceDao;
+import com.axteam.analyticsservice.dao.AnalyticsDao;
 import com.axteam.analyticsservice.models.CounterInfo;
 import com.axteam.analyticsservice.models.MetricName;
 import com.axteam.analyticsservice.utils.HibernateUtil;
@@ -10,11 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Repository
-public class AnalyticsServiceDaoImpl implements AnalyticsServiceDao {
+public class AnalyticsDaoImpl implements AnalyticsDao {
 
-	private static final Logger logger = LoggerFactory.getLogger(AnalyticsServiceDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(AnalyticsDaoImpl.class);
 	private final Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
@@ -30,6 +31,11 @@ public class AnalyticsServiceDaoImpl implements AnalyticsServiceDao {
 		} else {
 			logger.warn("counter not updated, unknown value: " + value);
 		}
+	}
+
+	@Override
+	public List<CounterInfo> getAllCounterInfo() {
+		return session.createQuery("select ci from CounterInfo as ci", CounterInfo.class).list();
 	}
 
 	private CounterInfo getCounterInfoByValue(int value) {
