@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public enum MetricName {
 	WORK_IS_STABLE  (33),
-	WORK_ON_WEAR (67),
+	WORK_ON_WEAR (66),
 	WORK_ON_EMERGENCY_OPERATION (100);
 
 	private final int step;
