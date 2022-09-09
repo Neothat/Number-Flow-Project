@@ -1,2 +1,15 @@
 server:
   port: 8002
+spring:
+  liquibase:
+    enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/analytics?currentSchema=analytics
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: none
