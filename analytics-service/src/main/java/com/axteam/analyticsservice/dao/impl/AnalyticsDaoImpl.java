@@ -39,13 +39,13 @@ public class AnalyticsDaoImpl implements AnalyticsDao {
 	}
 
 	private CounterInfo getCounterInfoByValue(int value) {
-		if (value < MetricName.WORK_IS_STABLE.getStep()) {
+		if (value <= MetricName.WORK_IS_STABLE.getStep()) {
 			return session.get(CounterInfo.class, MetricName.WORK_IS_STABLE.toString());
 		}
-		if (value < MetricName.WORK_ON_WEAR.getStep()) {
+		if (value <= MetricName.WORK_ON_WEAR.getStep()) {
 			return session.get(CounterInfo.class, MetricName.WORK_ON_WEAR.toString());
 		}
-		if (value < MetricName.WORK_ON_EMERGENCY_OPERATION.getStep()) {
+		if (value <= MetricName.WORK_ON_EMERGENCY_OPERATION.getStep()) {
 			return session.get(CounterInfo.class, MetricName.WORK_ON_EMERGENCY_OPERATION.toString());
 		}
 		return null;
