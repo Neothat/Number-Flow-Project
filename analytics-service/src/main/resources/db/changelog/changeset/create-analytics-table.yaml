@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: denis.volkov
+      changes:
+        - tagDatabase:
+            tag: create analytics table
+        - sqlFile:
+            path: db/changelog/changeset/sql/create-analytics-table.sql
+  - changeSet:
+      id: "2"
+      author: denis.volkov
+      changes:
+        - tagDatabase:
+            tag: initialization with primary data
+        - sqlFile:
+            path: db/changelog/changeset/sql/init-analytics-table.sql
