@@ -21,6 +21,6 @@ public enum MetricName {
 
 	@Override
 	public String toString() {
-		return "{\"" + super.name().toLowerCase(Locale.ROOT).replaceAll("_", StringUtils.SPACE) + "\"}";
+		return super.name().toLowerCase(Locale.ROOT).replaceAll("_", StringUtils.SPACE);
 	}
 }
