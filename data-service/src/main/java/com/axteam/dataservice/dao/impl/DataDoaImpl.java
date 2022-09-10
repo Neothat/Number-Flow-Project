@@ -1,7 +1,7 @@
 package com.axteam.dataservice.dao.impl;
 
 import com.axteam.dataservice.dao.DataDao;
-import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.entities.DataRecord;
 import com.axteam.dataservice.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -19,7 +19,7 @@ public class DataDoaImpl implements DataDao {
 	private final Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public void save(short number, OffsetDateTime time) {
+	public void save(Integer number, OffsetDateTime time) {
 		session.beginTransaction();
 		DataRecord dataRecord = new DataRecord(number, time);
 		session.save(dataRecord);

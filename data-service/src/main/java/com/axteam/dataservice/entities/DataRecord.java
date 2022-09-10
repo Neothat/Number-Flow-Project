@@ -1,4 +1,4 @@
-package com.axteam.dataservice.models;
+package com.axteam.dataservice.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,12 +23,12 @@ public class DataRecord {
 	private Long id;
 
 	@Column(name = "value")
-	private Short value;
+	private Integer value;
 
 	@Column(name = "time")
 	private OffsetDateTime time;
 
-	public DataRecord(Short value, OffsetDateTime time) {
+	public DataRecord(Integer value, OffsetDateTime time) {
 		this.value = value;
 		this.time = time;
 	}

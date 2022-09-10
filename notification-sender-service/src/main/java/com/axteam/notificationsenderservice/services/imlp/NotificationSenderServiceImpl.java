@@ -19,7 +19,7 @@ public class NotificationSenderServiceImpl implements NotificationSenderService 
 	private String receiver;
 
 	@Override
-	public void sendSimpleEmail(byte number) {
+	public void sendSimpleEmail(Integer number) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom(senderEmail);
 		mailMessage.setTo(receiver);

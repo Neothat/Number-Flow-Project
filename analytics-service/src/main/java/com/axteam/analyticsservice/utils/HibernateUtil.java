@@ -1,6 +1,6 @@
 package com.axteam.analyticsservice.utils;
 
-import com.axteam.analyticsservice.models.CounterInfo;
+import com.axteam.analyticsservice.entities.CounterInfo;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;

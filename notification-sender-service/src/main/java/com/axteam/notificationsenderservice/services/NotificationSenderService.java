@@ -1,5 +1,5 @@
 package com.axteam.notificationsenderservice.services;
 
 public interface NotificationSenderService {
-	void sendSimpleEmail(byte number);
+	void sendSimpleEmail(Integer number);
 }

@@ -17,9 +17,9 @@ public class AnalyticsServiceApplication {
 		SpringApplication.run(AnalyticsServiceApplication.class, args);
 	}
 
-	@KafkaListener(topics = "Stream_of_numbers", groupId = "number_id")
-	public void listener(String str) {
-		getAnalyticsService().updateCounterInfo(Integer.parseInt(str));
+	@KafkaListener(topics = "Stream_of_numbers", groupId = "analytics_id")
+	public void listener(String number) {
+		getAnalyticsService().updateCounterInfo(Integer.parseInt(number));
 	}
 
 	public AnalyticsService getAnalyticsService() {

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class DataRecordDto {
 
 	private long id;
-	private short value;
+	private Integer value;
 	private String time;
 
 }

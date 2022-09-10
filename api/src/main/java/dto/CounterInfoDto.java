@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CounterInfoDto {
 
 	private String metricName;
-	private int value;
+	private Integer value;
 	private String lastUpdateTime;
 
 }

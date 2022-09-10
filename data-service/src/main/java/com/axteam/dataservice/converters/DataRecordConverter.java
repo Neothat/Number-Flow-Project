@@ -1,6 +1,6 @@
 package com.axteam.dataservice.converters;
 
-import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.entities.DataRecord;
 import dto.DataRecordDto;
 
 public class DataRecordConverter {

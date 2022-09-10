@@ -1,8 +1,8 @@
 package com.axteam.analyticsservice.dao.impl;
 
 import com.axteam.analyticsservice.dao.AnalyticsDao;
-import com.axteam.analyticsservice.models.CounterInfo;
-import com.axteam.analyticsservice.models.MetricName;
+import com.axteam.analyticsservice.entities.CounterInfo;
+import com.axteam.analyticsservice.entities.MetricName;
 import com.axteam.analyticsservice.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package com.axteam.analyticsservice.dao;
 
-import com.axteam.analyticsservice.models.CounterInfo;
+import com.axteam.analyticsservice.entities.CounterInfo;
 
 import java.util.List;
 

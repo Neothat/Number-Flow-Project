@@ -18,8 +18,8 @@ public class NotificationSenderServiceApplication {
 	}
 
 	@KafkaListener(topics = "Stream_of_incidents", groupId = "incident_id")
-	public void listener(String str) {
-		getSenderService().sendSimpleEmail(Byte.parseByte(str));
+	public void listener(String criticalNumber) {
+		getSenderService().sendSimpleEmail(Integer.valueOf(criticalNumber));
 	}
 
 	public NotificationSenderService getSenderService() {
