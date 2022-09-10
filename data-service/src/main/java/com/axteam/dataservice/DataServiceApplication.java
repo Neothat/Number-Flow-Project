@@ -17,9 +17,9 @@ public class DataServiceApplication {
 		SpringApplication.run(DataServiceApplication.class, args);
 	}
 
-	@KafkaListener(topics = "Stream_of_numbers", groupId = "number_id")
-	public void listener(String str) {
-		getDataService().saveDataRecord(Short.parseShort(str));
+	@KafkaListener(topics = "Stream_of_numbers", groupId = "data_id")
+	public void listener(String number) {
+		getDataService().saveDataRecord(Integer.valueOf(number));
 	}
 
 	public DataService getDataService() {

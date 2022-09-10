@@ -19,7 +19,7 @@ public class DataDoaImpl implements DataDao {
 	private final Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public void save(short number, OffsetDateTime time) {
+	public void save(Integer number, OffsetDateTime time) {
 		session.beginTransaction();
 		DataRecord dataRecord = new DataRecord(number, time);
 		session.save(dataRecord);

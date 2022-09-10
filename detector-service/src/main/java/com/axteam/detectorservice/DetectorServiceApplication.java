@@ -1,8 +1,10 @@
 package com.axteam.detectorservice;
 
+import com.fasterxml.jackson.databind.ser.std.NumberSerializers;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @SpringBootApplication
 public class DetectorServiceApplication {
@@ -31,7 +32,7 @@ public class DetectorServiceApplication {
 			while (true) {
 				try {
 					ProducerRecord<String, String> record = new ProducerRecord<>(
-							"Stream_of_numbers", UUID.randomUUID().toString(), generateNumber());
+							"Stream_of_numbers", String.valueOf((int) (Math.random() * 3)), generateNumber());
 					kafkaProducer.send(record, (metadata, exception) -> {
 						if (exception == null) {
 							logger.info(String.format("received new metadata, topic - %s; partition - %s; offset - %s; time -%s",
@@ -41,7 +42,7 @@ public class DetectorServiceApplication {
 						}
 					});
 					//noinspection BusyWait
-					Thread.sleep(1000); //1000 - 1 сек
+					Thread.sleep(1000 * 10); //1000 - 1 сек
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -51,6 +52,6 @@ public class DetectorServiceApplication {
 	}
 
 	public static String generateNumber() {
-		return String.valueOf((byte) (Math.random() * 101));
+		return String.valueOf((int) (Math.random() * 101));
 	}
 }

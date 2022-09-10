@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS coredata.data.coredata
 (
     id    bigserial primary key,
-    value smallint NOT NULL,
+    value integer NOT NULL,
     time  timestamptz
 );

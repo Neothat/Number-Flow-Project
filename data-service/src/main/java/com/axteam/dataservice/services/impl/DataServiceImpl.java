@@ -22,7 +22,7 @@ public class DataServiceImpl implements DataService {
 	private final Logger logger = LoggerFactory.getLogger(DataServiceImpl.class);
 
 	@Override
-	public void saveDataRecord(short number) {
+	public void saveDataRecord(Integer number) {
 		OffsetDateTime now = OffsetDateTime.now();
 		logger.info(String.format("%s; Number received: %s",
 				now.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")),
@@ -32,10 +32,10 @@ public class DataServiceImpl implements DataService {
 	}
 
 	@Override
-	public void checkIncident(short number) {
+	public void checkIncident(Integer number) {
 		if (number == 100) {
 			ProducerRecord<String, String> record = new ProducerRecord<>(
-					"Stream_of_incidents", UUID.randomUUID().toString(), String.valueOf(number));
+					"Stream_of_incidents", "1", String.valueOf(number));
 			KafkaProducerUtil.getProducer().send(record, (metadata, exception) -> {
 				if (exception == null) {
 					logger.info(String.format("received new metadata, topic - %s; partition - %s; offset - %s; time -%s",
