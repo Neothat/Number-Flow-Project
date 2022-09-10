@@ -1,7 +1,7 @@
 package com.axteam.dataservice.dao.impl;
 
 import com.axteam.dataservice.dao.DataDao;
-import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.entities.DataRecord;
 import com.axteam.dataservice.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

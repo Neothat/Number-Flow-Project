@@ -2,7 +2,7 @@ package com.axteam.dataservice.services.impl;
 
 import com.axteam.dataservice.dao.DataDao;
 import com.axteam.dataservice.kafka.KafkaProducerUtil;
-import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.entities.DataRecord;
 import com.axteam.dataservice.services.DataService;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
@@ -13,13 +13,12 @@ import org.springframework.stereotype.Service;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class DataServiceImpl implements DataService {
 
 	private DataDao dataDao;
-	private final Logger logger = LoggerFactory.getLogger(DataServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(DataServiceImpl.class);
 
 	@Override
 	public void saveDataRecord(Integer number) {
@@ -27,7 +26,7 @@ public class DataServiceImpl implements DataService {
 		logger.info(String.format("%s; Number received: %s",
 				now.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")),
 				number));
-		getDataServiceDao().save(number, now);
+		getDataDao().save(number, now);
 		checkIncident(number);
 	}
 
@@ -49,15 +48,15 @@ public class DataServiceImpl implements DataService {
 
 	@Override
 	public List<DataRecord> getDataRecord(String startDate, String endDate) {
-		return getDataServiceDao().getDataRecord(startDate, endDate);
+		return getDataDao().getDataRecord(startDate, endDate);
 	}
 
-	public DataDao getDataServiceDao() {
+	public DataDao getDataDao() {
 		return dataDao;
 	}
 
 	@Autowired
-	public void setDataServiceDao(DataDao dataDao) {
+	public void setDataDao(DataDao dataDao) {
 		this.dataDao = dataDao;
 	}
 }

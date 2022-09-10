@@ -1,6 +1,6 @@
 package com.axteam.dataservice.services;
 
-import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.entities.DataRecord;
 
 import java.util.List;
 

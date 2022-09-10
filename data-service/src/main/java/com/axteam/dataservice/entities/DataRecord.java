@@ -1,4 +1,4 @@
-package com.axteam.dataservice.models;
+package com.axteam.dataservice.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

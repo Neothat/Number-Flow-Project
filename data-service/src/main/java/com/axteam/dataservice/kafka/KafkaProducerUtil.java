@@ -9,18 +9,18 @@ import java.util.Map;
 
 public class KafkaProducerUtil {
 
-	private static org.apache.kafka.clients.producer.KafkaProducer<String, String> kafkaProducer;
+	private static KafkaProducer<String, String> kafkaProducer;
 
 	static {
 		Map<String, Object> configProps = new HashMap<>();
 		configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer .class);
+		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 		configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
-		kafkaProducer = new org.apache.kafka.clients.producer.KafkaProducer<>(configProps);
+		kafkaProducer = new KafkaProducer<>(configProps);
 	}
 
-	public static org.apache.kafka.clients.producer.KafkaProducer<String, String> getProducer() {
+	public static KafkaProducer<String, String> getProducer() {
 		return kafkaProducer;
 	}
 

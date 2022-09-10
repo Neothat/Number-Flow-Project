@@ -1,6 +1,6 @@
 package com.axteam.dataservice.dao;
 
-import com.axteam.dataservice.models.DataRecord;
+import com.axteam.dataservice.entities.DataRecord;
 
 import java.time.OffsetDateTime;
 import java.util.List;
