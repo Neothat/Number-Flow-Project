@@ -1,7 +1,7 @@
 package com.axteam.analyticsservice.services.impl;
 
 import com.axteam.analyticsservice.dao.AnalyticsDao;
-import com.axteam.analyticsservice.models.CounterInfo;
+import com.axteam.analyticsservice.entities.CounterInfo;
 import com.axteam.analyticsservice.services.AnalyticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
 
 	@Override
 	public void updateCounterInfo(int value) {
-		getAnalyticsServiceDao().update(value);
+		getAnalyticsDao().update(value);
 	}
 
 	@Override
@@ -23,12 +23,12 @@ public class AnalyticsServiceImpl implements AnalyticsService {
 		return analyticsDao.getAllCounterInfo();
 	}
 
-	public AnalyticsDao getAnalyticsServiceDao() {
+	public AnalyticsDao getAnalyticsDao() {
 		return analyticsDao;
 	}
 
 	@Autowired
-	public void setAnalyticsServiceDao(AnalyticsDao analyticsDao) {
+	public void setAnalyticsDao(AnalyticsDao analyticsDao) {
 		this.analyticsDao = analyticsDao;
 	}
 }

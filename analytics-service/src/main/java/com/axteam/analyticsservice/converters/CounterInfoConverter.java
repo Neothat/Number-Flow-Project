@@ -1,6 +1,6 @@
 package com.axteam.analyticsservice.converters;
 
-import com.axteam.analyticsservice.models.CounterInfo;
+import com.axteam.analyticsservice.entities.CounterInfo;
 import dto.CounterInfoDto;
 
 public class CounterInfoConverter {

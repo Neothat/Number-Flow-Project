@@ -1,4 +1,4 @@
-package com.axteam.analyticsservice.models;
+package com.axteam.analyticsservice.entities;
 
 import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 
