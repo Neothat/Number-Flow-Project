@@ -45,7 +45,7 @@ public class GatewayController {
 			responses = {
 					@ApiResponse(
 							description = "Успешный ответ", responseCode = "200",
-							content = @Content(schema = @Schema(implementation = List.class))
+							content = @Content(schema = @Schema(implementation = CounterInfoDto.class))
 					)
 			}
 	)
@@ -59,14 +59,18 @@ public class GatewayController {
 			responses = {
 					@ApiResponse(
 							description = "Успешный ответ", responseCode = "200",
-							content = @Content(schema = @Schema(implementation = List.class))
+							content = @Content(schema = @Schema(implementation = DataRecordDto.class))
 					)
 			}
 	)
 	@GetMapping("/allDataRecords")
 	public List<DataRecordDto> getAllDataRecords(
-			@RequestParam @Parameter(name = "startDate", description = "Параметр отвечающий с какого числа показать результаты", required = false) String startDate,
-			@RequestParam @Parameter(name = "endDate", description = "Параметр отвечающий по какое число показать результаты", required = false) String endDate
+			@RequestParam(name = "startDate", required = false)
+			@Parameter(name = "startDate", description = "Параметр отвечающий с какого числа показать результаты", required = false,
+					example = "2022-08-30") String startDate,
+			@RequestParam(name = "endDate", required = false)
+			@Parameter(name = "endDate", description = "Параметр отвечающий по какое число показать результаты", required = false,
+					example = "2022-09-12") String endDate
 	) {
 		return getDataServiceFeignClient().getAllDataRecords(startDate, endDate);
 	}
