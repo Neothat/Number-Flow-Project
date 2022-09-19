@@ -1,6 +1,7 @@
 package com.axteam.notificationsenderservice.services.imlp;
 
 import com.axteam.notificationsenderservice.services.NotificationSenderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -8,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class NotificationSenderServiceImpl implements NotificationSenderService {
 
 	private JavaMailSender javaMailSender;
@@ -26,6 +28,7 @@ public class NotificationSenderServiceImpl implements NotificationSenderService 
 		mailMessage.setSubject("mayday mayday mayday");
 		mailMessage.setText("The indicator came to us - " + number);
 		getJavaMailSender().send(mailMessage);
+		log.info("Message sent");
 	}
 
 	public JavaMailSender getJavaMailSender() {
