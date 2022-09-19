@@ -4,18 +4,17 @@ import com.axteam.analyticsservice.dao.AnalyticsDao;
 import com.axteam.analyticsservice.entities.CounterInfo;
 import com.axteam.analyticsservice.entities.MetricName;
 import com.axteam.analyticsservice.utils.HibernateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Repository
+@Slf4j
 public class AnalyticsDaoImpl implements AnalyticsDao {
 
-	private static final Logger logger = LoggerFactory.getLogger(AnalyticsDaoImpl.class);
 	private final Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
@@ -27,9 +26,9 @@ public class AnalyticsDaoImpl implements AnalyticsDao {
 			counterInfo.setLastUpdateTime(OffsetDateTime.now());
 			session.save(counterInfo);
 			session.getTransaction().commit();
-			logger.info("Counter updated to " + counterInfo);
+			log.info("Counter updated to " + counterInfo);
 		} else {
-			logger.warn("counter not updated, unknown value: " + value);
+			log.warn("counter not updated, unknown value: " + value);
 		}
 	}
 

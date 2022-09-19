@@ -3,19 +3,18 @@ package com.axteam.dataservice.dao.impl;
 import com.axteam.dataservice.dao.DataDao;
 import com.axteam.dataservice.entities.DataRecord;
 import com.axteam.dataservice.utils.HibernateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Repository
+@Slf4j
 public class DataDoaImpl implements DataDao {
 
-	private static final Logger logger = LoggerFactory.getLogger(DataDoaImpl.class);
 	private final Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
@@ -24,7 +23,7 @@ public class DataDoaImpl implements DataDao {
 		DataRecord dataRecord = new DataRecord(number, time);
 		session.save(dataRecord);
 		session.getTransaction().commit();
-		logger.info("An entry has been added to the database: " + dataRecord);
+		log.info("An entry has been added to the database: " + dataRecord);
 	}
 
 	@Override
