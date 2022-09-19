@@ -1,6 +1,6 @@
 package com.axteam.analyticsservice.controllers;
 
-import com.axteam.analyticsservice.converters.CounterInfoConverter;
+import com.axteam.analyticsservice.mappers.CounterInfoMapper;
 import com.axteam.analyticsservice.services.AnalyticsService;
 import dto.CounterInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class AnalyticController {
 	@GetMapping("/allCounterInfos")
 	public List<CounterInfoDto> getAllCounterInfos() {
 		return getAnalyticsService().getAllCounterInfo().stream()
-				.map(CounterInfoConverter::convertToDto)
+				.map(CounterInfoMapper.INSTANCE::toDto)
 				.collect(Collectors.toList());
 	}
 

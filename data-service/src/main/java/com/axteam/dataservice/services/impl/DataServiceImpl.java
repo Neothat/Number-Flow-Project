@@ -4,6 +4,8 @@ import com.axteam.dataservice.dao.DataDao;
 import com.axteam.dataservice.kafka.KafkaProducerUtil;
 import com.axteam.dataservice.entities.DataRecord;
 import com.axteam.dataservice.services.DataService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
+//@Slf4j
 public class DataServiceImpl implements DataService {
 
 	private DataDao dataDao;
