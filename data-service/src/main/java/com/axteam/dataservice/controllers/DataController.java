@@ -1,6 +1,6 @@
 package com.axteam.dataservice.controllers;
 
-import com.axteam.dataservice.converters.DataRecordConverter;
+import com.axteam.dataservice.mappers.DataRecordMapper;
 import com.axteam.dataservice.services.DataService;
 import dto.DataRecordDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class DataController {
 			@RequestParam(name = "endDate", required = false) String endDate
 	) {
 		return getDataService().getDataRecord(startDate, endDate).stream()
-				.map(DataRecordConverter::convertDataRecordToDto)
+				.map(DataRecordMapper.INSTANCE::toDto)
 				.collect(Collectors.toList());
 	}
 
