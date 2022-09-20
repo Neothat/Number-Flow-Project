@@ -32,7 +32,7 @@ public class DataDoaImpl implements DataDao {
 		OffsetDateTime editedEndDate = null;
 
 		if (startDate != null) {
-			editedStartDate = OffsetDateTime.parse(startDate + "T00:00:00+03:00").minusDays(1L);
+			editedStartDate = OffsetDateTime.parse(startDate + "T00:00:00+03:00");
 		}
 		if (endDate != null) {
 			editedEndDate = OffsetDateTime.parse(endDate + "T00:00:00+03:00").plusDays(1L);
