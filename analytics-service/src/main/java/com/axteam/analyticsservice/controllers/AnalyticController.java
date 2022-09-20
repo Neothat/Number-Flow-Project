@@ -4,6 +4,8 @@ import com.axteam.analyticsservice.mappers.CounterInfoMapper;
 import com.axteam.analyticsservice.services.AnalyticsService;
 import dto.CounterInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,10 +18,10 @@ public class AnalyticController {
 	private AnalyticsService analyticsService;
 
 	@GetMapping("/allCounterInfos")
-	public List<CounterInfoDto> getAllCounterInfos() {
-		return getAnalyticsService().getAllCounterInfo().stream()
+	public ResponseEntity<List<CounterInfoDto>> getAllCounterInfos() {
+		return new ResponseEntity<>(getAnalyticsService().getAllCounterInfo().stream()
 				.map(CounterInfoMapper.INSTANCE::toDto)
-				.collect(Collectors.toList());
+				.collect(Collectors.toList()), HttpStatus.OK);
 	}
 
 	public AnalyticsService getAnalyticsService() {
