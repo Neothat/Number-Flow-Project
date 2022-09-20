@@ -14,3 +14,8 @@ spring:
     sender: # отправить письма (почта и имя)
       email: no-reply@example.com
       text: no-reply
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
