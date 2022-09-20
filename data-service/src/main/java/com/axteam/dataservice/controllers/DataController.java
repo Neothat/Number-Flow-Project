@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,10 @@ public class DataController {
 
 	@GetMapping("/allDataRecords")
 	public List<DataRecordDto> getAllDataRecords(
-			@RequestParam(name = "startDate", required = false) String startDate,
-			@RequestParam(name = "endDate", required = false) String endDate
+			@RequestParam(name = "startDate", required = false)
+			@Pattern(regexp = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$") String startDate,
+			@RequestParam(name = "endDate", required = false)
+			@Pattern(regexp = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$") String endDate
 	) {
 		return getDataService().getDataRecord(startDate, endDate).stream()
 				.map(DataRecordMapper.INSTANCE::toDto)
